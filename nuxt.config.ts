@@ -2,7 +2,20 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt'],
+  vite: {
+    vue: {
+      features: {
+        customElement: true,
+        propsDestructure: true,
+        optionsAPI: false
+      }
+    }
+  },
+  modules: [
+    '@nuxtjs/tailwindcss',
+    'shadcn-nuxt',
+    '@nuxtjs/google-fonts'
+  ],
   shadcn: {
     /**
      * Prefix for all the imported component
@@ -13,5 +26,11 @@ export default defineNuxtConfig({
      * @default "./components/ui"
      */
     componentDir: './components/ui'
+  },
+  googleFonts: {
+    // TODO: maybe better to download fonts ?
+    families: {
+      Montserrat: [300, 400, 500, 700]
+    }
   }
 })
