@@ -1,12 +1,12 @@
 <template>
-  <div class="w-full h-screen grid place-items-center">
+  <div class="w-full grid place-items-center py-20">
     <div class="flex items-center gap-x-6 max-w-[1400px]">
       <Avatar id="avatar" size="xl">
         <AvatarImage :src="HeroImage"/>
         <AvatarFallback>DV</AvatarFallback>
       </Avatar>
       <div id="intro-content">
-        <div class="font-headline font-bold text-6xl mb-8">Dmytro Voloshko</div>
+        <div class="font-headline font-bold text-5xl mb-8">Hello, my name is <span class="text-6xl">Dmytro Voloshko</span>! I'm Frontend Developer</div>
         <p class="font-headline text-2xl">
           Passionate engineer dedicated to crafting clean, efficient,
           and maintainable code. With a strong focus on continuous learning
@@ -22,13 +22,13 @@
 <script setup lang="ts">
 import { Avatar, AvatarImage, AvatarFallback } from '~/components/ui/avatar'
 import HeroImage from '~/assets/images/avatar.jpg'
-import { gsap } from 'gsap'
+const { $gsap } = useNuxtApp()
 
 const onMountAnimation = () => {
-  gsap.from('#intro-content', { duration: 1, y: -500, opacity: 0  })
-  gsap.to('#intro-content', { duration: 1, y: 0, ease: 'power.in', opacity: 1 })
-  gsap.from('#avatar', { duration: 1, y: -500, opacity: 0  })
-  gsap.to('#avatar', { duration: 1, y: 0, ease: 'power.in', opacity: 1 })
+  $gsap.from('#intro-content', { duration: 1, y: -500, opacity: 0  })
+  $gsap.to('#intro-content', { duration: 1, y: 0, ease: 'power.in', opacity: 1 })
+  $gsap.from('#avatar', { duration: 1, y: -500, opacity: 0  })
+  $gsap.to('#avatar', { duration: 1, y: 0, ease: 'power.in', opacity: 1 })
 }
 
 onMounted(() => {
