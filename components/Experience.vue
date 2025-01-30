@@ -1,11 +1,11 @@
 <template>
-  <div id="experience">
+  <div id="experience" class="w-full h-screen grid place-items-center py-20">
     <div class="container">
       <Card
         :id="`card${idx}`"
         v-for="(card, idx) in cards"
         :key="idx"
-        class="w-2/4 mb-5 last:mb-0"
+        class="w-2/4 mb-5 last:mb-0 hover:drop-shadow-lg"
       >
         <CardHeader>
           <CardTitle>{{ card.title }}</CardTitle>
