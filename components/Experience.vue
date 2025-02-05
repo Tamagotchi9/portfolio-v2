@@ -5,13 +5,15 @@
         :id="`card${idx}`"
         v-for="(card, idx) in cards"
         :key="idx"
-        class="w-2/4 mb-5 last:mb-0 hover:drop-shadow-lg"
+        class="w-2/4 mb-5 last:mb-0 hover:drop-shadow-lg relative"
       >
         <CardHeader>
           <CardTitle>{{ card.title }}</CardTitle>
           <CardDescription>{{ card.period }}</CardDescription>
         </CardHeader>
         <CardContent>
+          <img v-if="idx === 1 && isAnimationFinished" :src="Arrow" alt="arrow" class="max-w-[200px] h-auto absolute -right-[180px] bottom-[55px]">
+          <img v-if="idx === 2 && isAnimationFinished" :src="CurlyArrow" alt="curly arrow" class="max-w-[150px] h-auto absolute -left-[155px] bottom-[70px] rotate-180">
           <div v-html="card.description"></div>
         </CardContent>
         <CardFooter>
@@ -36,6 +38,8 @@ import {
   CardFooter
 } from '~/components/ui/card'
 import { Badge } from "~/components/ui/badge";
+import CurlyArrow from '~/assets/images/curly-arrow.png'
+import Arrow from '~/assets/images/arrow.png'
 
 const { $gsap } = useNuxtApp()
 
@@ -66,10 +70,15 @@ for more than 20,000 active users. Delivered a bunch of features from simple CRU
   }
 ]
 
-onMounted(() => {
-  $gsap.fromTo('#card0', { x: 0 }, { scrollTrigger: '#experience', duration: 1, x: '100%', ease: 'none'})
+const isAnimationFinished = ref(false)
+const animateCards = () => {
+  $gsap.fromTo('#card0', { x: 0 }, { scrollTrigger: '#experience', duration: 1, x: '100%', ease: 'none' })
   $gsap.fromTo('#card1', { x: '100%' }, { scrollTrigger: '#experience', ease: 'none', duration: 1, x: 0 })
-  $gsap.fromTo('#card2', { x: 0 }, { scrollTrigger: '#experience', duration: 1, x: '100%', ease: 'none'})
+  $gsap.fromTo('#card2', { x: 0 }, { scrollTrigger: '#experience', duration: 1, x: '100%', ease: 'none', onComplete: () => { isAnimationFinished.value = true } })
+}
+
+onMounted(() => {
+  animateCards()
 })
 
 </script>
