@@ -1,5 +1,5 @@
 <template>
-  <div id="experience" class="w-full h-screen grid place-items-center py-20">
+  <section id="experience" class="w-full grid place-items-center py-20">
     <div class="container">
       <Card
         :id="`card${idx}`"
@@ -25,7 +25,7 @@
         </CardFooter>
       </Card>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">

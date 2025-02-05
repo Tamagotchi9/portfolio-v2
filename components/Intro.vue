@@ -1,11 +1,11 @@
 <template>
-  <div id="intro" class="w-full h-screen grid place-items-center py-20">
+  <section id="intro" class="w-full h-screen grid place-items-center py-20">
     <div class="flex items-center gap-x-6 max-w-[1400px]">
       <div id="avatar" class="max-w-lg w-full h-full border border-black rounded-lg p-4">
         <img class="max-w-full h-auto" :src="HeroImage" alt="Hero image">
       </div>
       <div id="intro-content">
-        <div class="font-headline font-bold text-5xl mb-8 intro__title">{{ typedTitle }}</div>
+        <h1 class="font-headline font-bold text-5xl mb-8 intro__title">{{ typedTitle }}</h1>
         <p class="font-headline text-2xl">
           Passionate engineer dedicated to crafting clean, efficient,
           and maintainable code. With a strong focus on continuous learning
@@ -19,7 +19,7 @@
       <img id="slide-arrow" class="max-w-[64px]" :src="ArrowDown" alt="Scroll down arrow">
       <div class="order-2">Scroll down</div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">

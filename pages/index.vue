@@ -1,14 +1,16 @@
 <template>
   <SectionTitle :title="sectionTitle"/>
-  <main id="sections">
+  <main id="sections" class="h-full">
     <Intro data-title="Intro"/>
     <Experience data-title="Experience"/>
+    <Projects data-title="Pet Projects"/>
   </main>
 </template>
 
 <script setup lang="ts">
 import Intro from '~/components/Intro.vue'
 import Experience from "~/components/Experience.vue"
+import Projects from '~/components/Projects.vue'
 import SectionTitle from "~/components/SectionTitle.vue";
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
@@ -20,6 +22,7 @@ const animateSectionTitle = (sections: HTMLCollection | []) => {
       ScrollTrigger.create({
         trigger: section,
         start: "top center",
+        end: 'bottom center',
         onEnter: () => {
           sectionTitle.value = section.dataset.title || ''
         },
