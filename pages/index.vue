@@ -1,5 +1,4 @@
 <template>
-  <SectionTitle :title="sectionTitle"/>
   <main id="sections" class="h-full">
     <Intro data-title="Intro"/>
     <Experience data-title="Experience"/>
@@ -11,7 +10,6 @@
 import Intro from '~/components/Intro.vue'
 import Experience from "~/components/Experience.vue"
 import Projects from '~/components/Projects.vue'
-import SectionTitle from "~/components/SectionTitle.vue";
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 const sectionTitle = ref<string>('Intro')
