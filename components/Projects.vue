@@ -1,12 +1,13 @@
 <template>
   <section class="w-full grid place-items-center py-[100px]">
     <div class="container">
+      <h2 class="font-headline font-bold text-5xl text-center mb-[80px]">Projects</h2>
       <div class="grid grid-cols-3 gap-4">
         <Card
           v-for="(card, idx) in projectCards"
           :key="idx"
           @click="navigateTo(card.link, { external: true, open: { target: '_blank' } })"
-          class="cursor-pointer"
+          class="cursor-pointer hover:drop-shadow-lg"
         >
           <CardHeader>
             <img :src="card.image" alt="">
@@ -30,8 +31,7 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
-  CardContent,
-  CardFooter
+  CardContent
 } from '~/components/ui/card'
 
 const projectCards = [

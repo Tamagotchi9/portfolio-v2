@@ -5,16 +5,19 @@ module.exports = {
   darkMode: ["class"],
   safelist: ["dark"],
   prefix: "",
-  
+
   theme: {
     fontFamily: {
       headline: 'Montserrat, sans-serif',
+      default: 'Poppins, sans-serif'
     },
     container: {
       center: true,
       padding: "2rem",
       screens: {
         "2xl": "1400px",
+        xl: '1200px',
+        lg: '900px'
       },
     },
     extend: {
@@ -76,12 +79,22 @@ module.exports = {
           from: { height: 'var(--radix-collapsible-content-height)' },
           to: { height: 0 },
         },
+        "typing": {
+          from: { width: 0 },
+          to: { width: "100%" }
+        },
+        "blink-caret": {
+          from: { "border-color": "transparent" },
+          to: { "border-color": "transparent" },
+          "50%": { "border-color": "#000" }
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "collapsible-down": "collapsible-down 0.2s ease-in-out",
         "collapsible-up": "collapsible-up 0.2s ease-in-out",
+        "typing-effect": 'typing 2s steps(40, end) infinite, blink-caret .75s step-end infinite'
       },
     },
   },

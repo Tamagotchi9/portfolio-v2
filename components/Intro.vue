@@ -1,18 +1,23 @@
 <template>
   <section id="intro" class="w-full h-screen grid place-items-center py-20">
-    <div class="flex items-center gap-x-6 max-w-[1400px]">
-      <div id="avatar" class="max-w-lg w-full h-full border border-black rounded-lg p-4">
-        <img class="max-w-full h-auto" :src="HeroImage" alt="Hero image">
-      </div>
-      <div id="intro-content">
-        <h1 class="font-headline font-bold text-5xl mb-8 intro__title">{{ typedTitle }}</h1>
-        <p class="font-headline text-2xl">
-          Passionate engineer dedicated to crafting clean, efficient,
-          and maintainable code. With a strong focus on continuous learning
-          and improvement, I thrive on solving challenges and delivering
-          user-centric experiences. My commitment to detail and drive
-          for excellence ensure that every project not only meets but exceeds expectations.
-        </p>
+    <div class="container">
+      <div class="flex items-center gap-x-6">
+        <div id="avatar" class="max-w-lg w-full h-full">
+          <img class="max-w-full h-auto rounded-lg" :src="HeroImage" alt="Hero image">
+        </div>
+        <div id="intro-content">
+          <h1 class="font-headline font-bold text-5xl mb-8">
+            Hello, my name is Dmytro Voloshko! I'm
+            <span class="border-r-[6px] border-black animate-typing-effect">{{ typedTitle }}</span>
+          </h1>
+          <p class="font-headline text-2xl">
+            Passionate engineer dedicated to crafting clean, efficient,
+            and maintainable code. With a strong focus on continuous learning
+            and improvement, I thrive on solving challenges and delivering
+            user-centric experiences. My commitment to detail and drive
+            for excellence ensure that every project not only meets but exceeds expectations.
+          </p>
+        </div>
       </div>
     </div>
     <div id="slide-arrow-block" class="absolute left-1/2 bottom-[25px] z-[1] transform -translate-x-1/2 flex flex-col items-center">
@@ -28,7 +33,7 @@ import ArrowDown  from '~/assets/images/svg/arrow-down.svg'
 const { $gsap } = useNuxtApp()
 
 const onMountAnimation = () => {
-  $gsap.from('#intro-content', { duration: 1, y: -500, opacity: 0  })
+  $gsap.from('#intro-content', { duration: 1, y: 1500, opacity: 0  })
   $gsap.to('#intro-content', { duration: 1, y: 0, ease: 'power.in', opacity: 1 })
   $gsap.from('#avatar', { duration: 1, y: -500, opacity: 0  })
   $gsap.to('#avatar', { duration: 1, y: 0, ease: 'power.in', opacity: 1 })
@@ -44,28 +49,28 @@ const onMountAnimation = () => {
 }
 
 const typedTitle = ref<string>('')
-const title = 'Hello, my name is Dmytro Voloshko! I\'m Frontend Developer'
+const titles = ['frontend dev', 'ukrainian', 'cat lover']
 
 const typeWriter = (text: string, i: number, fnCallback: Function) => {
   if (i < (text.length)) {
-    typedTitle.value += text.substring(0, i+1)
+    typedTitle.value = text.substring(0, i+1)
 
     setTimeout(function() {
       typeWriter(text, i + 1, fnCallback)
-    }, 100);
+    }, 200);
   } else if (typeof fnCallback === 'function') {
     setTimeout(fnCallback, 0);
   }
 }
 const startTextAnimation = (i: number) => {
-  if (typeof title[i] === 'undefined') {
+  if (typeof titles[i] === 'undefined') {
     setTimeout(function() {
-      typedTitle.value = ''
+      // typedTitle.value = ''
       startTextAnimation(0);
-    }, 10000);
+    }, 2000);
   }
-  if (title[i]) {
-    typeWriter(title[i], 0, function(){
+  if (i < titles[i]?.length) {
+    typeWriter(titles[i], 0, function(){
       startTextAnimation(i + 1);
     });
   }
@@ -76,20 +81,5 @@ onMounted(() => {
 })
 </script>
 
-<style>
-.intro__title {
-  border-right: 5px solid #8F257D;
-  animation:
-    typing 2s steps(40, end) infinite,
-    blink-caret .75s step-end infinite;
-}
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
-}
-
-@keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: #8F257D; }
-}
+<style scoped>
 </style>

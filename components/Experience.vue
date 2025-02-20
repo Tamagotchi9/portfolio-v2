@@ -1,6 +1,7 @@
 <template>
   <section id="experience" class="w-full grid place-items-center py-20">
     <div class="container">
+      <h2 class="font-headline font-bold text-5xl text-center mb-[80px]">Experience</h2>
       <Card
         :id="`card${idx}`"
         v-for="(card, idx) in cards"
@@ -48,7 +49,7 @@ const cards = [
     title: 'Frontend Developer at Checkbox',
     period: '2022 October - present',
     description: `<p>
-        Developed from scratch a frontend of <a class="underline" href="https://my.dubidoc.com.ua">Dubidoc project (Ukrainian e-document management service)</a>
+        Developed from scratch a frontend of <a class="underline" href="https://my.dubidoc.com.ua" target="_blank">Dubidoc project (Ukrainian e-document management service)</a>
 for more than 20,000 active users. Delivered a bunch of features from simple CRUD pages to PDF generation/rendering in web,
     creating widget for client integrations.
     Accomplished features caveats like PDF manipulating, frontend optimizations.
@@ -59,7 +60,7 @@ for more than 20,000 active users. Delivered a bunch of features from simple CRU
   {
     title: 'Frontend Developer at Valtech',
     period: '2021 September - 2022 October',
-    description: `<p>Developed and styled interactive web pages for e-health HARTMANN ecommerce platform. Built many sections of product like checkout, shopping cart, refactored code for readability and reduced components dependencies.</p>`,
+    description: `<p>Developed and styled interactive web pages for <a class="underline" href="https://www.hartmann.info/de-de/" target="_blank">e-health HARTMANN ecommerce platform</a>. Built many sections of product like checkout, shopping cart, refactored code for readability and reduced components dependencies.</p>`,
     technologies: ['Vue 2', 'Vuex', 'Bootstrap 4', 'Storybook', 'VeeValidate', 'JavaScript'],
   },
   {
@@ -72,9 +73,18 @@ for more than 20,000 active users. Delivered a bunch of features from simple CRU
 
 const isAnimationFinished = ref(false)
 const animateCards = () => {
-  $gsap.fromTo('#card0', { x: 0 }, { scrollTrigger: '#experience', duration: 1, x: '100%', ease: 'none' })
-  $gsap.fromTo('#card1', { x: '100%' }, { scrollTrigger: '#experience', ease: 'none', duration: 1, x: 0 })
-  $gsap.fromTo('#card2', { x: 0 }, { scrollTrigger: '#experience', duration: 1, x: '100%', ease: 'none', onComplete: () => { isAnimationFinished.value = true } })
+  $gsap.fromTo('#card0', { x: 0 }, { scrollTrigger: {
+      trigger: '#experience',
+      start: 'top center'
+    }, duration: 1, x: '100%', ease: 'none' })
+  $gsap.fromTo('#card1', { x: '100%' }, { scrollTrigger: {
+      trigger: '#experience',
+      start: 'top center'
+    }, ease: 'none', duration: 1, x: 0 })
+  $gsap.fromTo('#card2', { x: 0 }, { scrollTrigger: {
+      trigger: '#experience',
+      start: 'top center'
+    }, duration: 1, x: '100%', ease: 'none', onComplete: () => { isAnimationFinished.value = true } })
 }
 
 onMounted(() => {
