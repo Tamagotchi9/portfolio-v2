@@ -1,27 +1,24 @@
 <template>
-  <section id="intro" class="w-full h-screen grid place-items-center py-20">
-    <div class="container">
-      <div class="flex items-center gap-x-6">
-        <div id="avatar" class="max-w-lg w-full h-full">
+  <section id="intro" class="w-full h-full lg:h-screen grid xl:place-items-center py-5 md:py-10 xl:py-20 overflow-hidden">
+    <div v-show="readyToAnimate" class="container">
+      <div class="flex items-start xl:items-center flex-col md:flex-row gap-y-6 md:gap-y-0 md:gap-x-10">
+        <div id="avatar" class="w-full md:w-1/2 xl:max-w-lg h-full">
           <img class="max-w-full h-auto rounded-lg" :src="HeroImage" alt="Hero image">
         </div>
-        <div id="intro-content">
-          <h1 class="font-headline font-bold text-5xl mb-8">
-            Hello, my name is Dmytro Voloshko! I'm
+        <div id="intro-content" class="w-full md:w-1/2">
+          <h1 class="font-headline font-bold text-3xl xl:text-5xl  mb-4 xl:mb-8">
+            Hello, I'm <br/>
             <span class="border-r-[6px] border-black animate-typing-effect">{{ typedTitle }}</span>
           </h1>
-          <p class="font-headline text-2xl">
-            Passionate engineer dedicated to crafting clean, efficient,
-            and maintainable code. With a strong focus on continuous learning
-            and improvement, I thrive on solving challenges and delivering
-            user-centric experiences. My commitment to detail and drive
-            for excellence ensure that every project not only meets but exceeds expectations.
+          <p class="font-headline text-md xl:text-2xl">
+            Passionate engineer dedicated to what he is doing,
+            let achievements and experience tell about my skills
           </p>
         </div>
       </div>
     </div>
-    <div id="slide-arrow-block" class="absolute left-1/2 bottom-[25px] z-[1] transform -translate-x-1/2 flex flex-col items-center">
-      <img id="slide-arrow" class="max-w-[64px]" :src="ArrowDown" alt="Scroll down arrow">
+    <div id="slide-arrow-block" class="absolute left-1/2 bottom-0 xl:bottom-[25px] z-[1] transform -translate-x-1/2 flex flex-col items-center">
+      <img id="slide-arrow" class="max-w-[32px] lg:max-w-[64px]" :src="ArrowDown" alt="Scroll down arrow">
       <div class="order-2">Scroll down</div>
     </div>
   </section>
@@ -33,6 +30,7 @@ import ArrowDown  from '~/assets/images/svg/arrow-down.svg'
 const { $gsap } = useNuxtApp()
 
 const onMountAnimation = () => {
+  readyToAnimate.value = true
   $gsap.from('#intro-content', { duration: 1, y: 1500, opacity: 0  })
   $gsap.to('#intro-content', { duration: 1, y: 0, ease: 'power.in', opacity: 1 })
   $gsap.from('#avatar', { duration: 1, y: -500, opacity: 0  })
@@ -48,29 +46,46 @@ const onMountAnimation = () => {
   startTextAnimation(0)
 }
 
+const readyToAnimate = ref<boolean>(false)
 const typedTitle = ref<string>('')
-const titles = ['frontend dev', 'ukrainian', 'cat lover']
+const titles = ['Dmytro Voloshko', 'Frontend developer', 'Ukrainian', 'Cat lover']
+let isReversed = false
 
 const typeWriter = (text: string, i: number, fnCallback: Function) => {
-  if (i < (text.length)) {
-    typedTitle.value = text.substring(0, i+1)
+  if (!isReversed && i < text.length) {
+    typedTitle.value = text.substring(0, i + 1)
 
     setTimeout(function() {
       typeWriter(text, i + 1, fnCallback)
-    }, 200);
+    }, 150);
+  } else if ((i === text.length || isReversed) && i !== 0) {
+    isReversed = true
+    if (i === text.length) {
+      setTimeout(() => {
+        typedTitle.value = text.substring(0, i - 1)
+
+        setTimeout(function() {
+          typeWriter(text, i - 1, fnCallback)
+        }, 100);
+      }, 2000)
+    } else {
+      typedTitle.value = text.substring(0, i - 1)
+
+      setTimeout(function() {
+        typeWriter(text, i - 1, fnCallback)
+      }, 100);
+    }
   } else if (typeof fnCallback === 'function') {
-    setTimeout(fnCallback, 0);
+    fnCallback()
   }
 }
 const startTextAnimation = (i: number) => {
   if (typeof titles[i] === 'undefined') {
-    setTimeout(function() {
-      // typedTitle.value = ''
-      startTextAnimation(0);
-    }, 2000);
+    startTextAnimation(0);
   }
   if (i < titles[i]?.length) {
-    typeWriter(titles[i], 0, function(){
+    typeWriter(titles[i], 0, function() {
+      isReversed = false
       startTextAnimation(i + 1);
     });
   }

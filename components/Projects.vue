@@ -1,8 +1,8 @@
 <template>
-  <section class="w-full grid place-items-center py-[100px]">
+  <section class="w-full grid place-items-center py-5 md:py-10 xl:py-20">
     <div class="container">
-      <h2 class="font-headline font-bold text-5xl text-center mb-[80px]">Projects</h2>
-      <div class="grid grid-cols-3 gap-4">
+      <h2 class="font-headline font-bold text-2xl md:text-3xl xl:text-5xl text-center mb-[20px] md:mb-[40px] xl:mb-[80px]">Projects</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
         <Card
           v-for="(card, idx) in projectCards"
           :key="idx"

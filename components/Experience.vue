@@ -1,12 +1,12 @@
 <template>
-  <section id="experience" class="w-full grid place-items-center py-20">
+  <section id="experience" class="w-full grid place-items-center py-5 md:py-10 xl:py-20">
     <div class="container">
-      <h2 class="font-headline font-bold text-5xl text-center mb-[80px]">Experience</h2>
+      <h2 class="font-headline font-bold text-2xl md:text-3xl xl:text-5xl text-center mb-[20px] md:mb-[40px] xl:mb-[80px]">Experience</h2>
       <Card
         :id="`card${idx}`"
         v-for="(card, idx) in cards"
         :key="idx"
-        class="w-2/4 mb-5 last:mb-0 hover:drop-shadow-lg relative"
+        class="w-full xl:w-1/2 mb-5 last:mb-0 hover:drop-shadow-lg relative"
       >
         <CardHeader>
           <CardTitle>{{ card.title }}</CardTitle>
@@ -17,11 +17,10 @@
           <img v-if="idx === 2 && isAnimationFinished" :src="CurlyArrow" alt="curly arrow" class="max-w-[150px] h-auto absolute -left-[155px] bottom-[70px] rotate-180">
           <div v-html="card.description"></div>
         </CardContent>
-        <CardFooter>
+        <CardFooter class="flex flex-wrap gap-2">
           <Badge
             v-for="(badge, idx) in card.technologies"
             :key="idx"
-            class="mr-1 last:mr-0"
           >{{badge}}</Badge>
         </CardFooter>
       </Card>
@@ -41,8 +40,12 @@ import {
 import { Badge } from "~/components/ui/badge";
 import CurlyArrow from '~/assets/images/curly-arrow.png'
 import Arrow from '~/assets/images/arrow.png'
+import { useResponsive } from '~/composables/useResponsive'
+
 
 const { $gsap } = useNuxtApp()
+
+const { xlDevice } = useResponsive()
 
 const cards = [
   {
@@ -88,7 +91,10 @@ const animateCards = () => {
 }
 
 onMounted(() => {
-  animateCards()
+  console.log(xlDevice)
+  if (xlDevice) {
+    animateCards()
+  }
 })
 
 </script>
