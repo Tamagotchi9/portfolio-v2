@@ -6,9 +6,9 @@ export function useResponsive () {
     const screenHeight = ref(window?.innerHeight)
 
     const xsDevice = computed(() => screenWidth.value < breakpoints.sm)
-    const mdDevice = computed(() => screenHeight.value >= breakpoints.sm && screenWidth.value < breakpoints.md)
-    const lgDevice = computed(() => screenHeight.value >= breakpoints.md && screenWidth.value < breakpoints.lg)
-    const xlDevice = computed(() => screenHeight.value >= breakpoints.xl)
+    const mdDevice = computed(() => screenWidth.value >= breakpoints.sm && screenWidth.value < breakpoints.md)
+    const lgDevice = computed(() => screenWidth.value >= breakpoints.md && screenWidth.value < breakpoints.lg)
+    const xlDevice = computed(() => screenWidth.value >= breakpoints.xl)
 
     const updateScreenSize = () => {
         screenWidth.value = window.innerWidth

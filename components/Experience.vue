@@ -53,12 +53,12 @@ const cards = [
     period: '2022 October - present',
     description: `<p>
         Developed from scratch a frontend of <a class="underline" href="https://my.dubidoc.com.ua" target="_blank">Dubidoc project (Ukrainian e-document management service)</a>
-for more than 20,000 active users. Delivered a bunch of features from simple CRUD pages to PDF generation/rendering in web,
+for more than 10,000 active users. Delivered a bunch of features from simple CRUD pages to PDF generation/rendering in web,
     creating widget for client integrations.
     Accomplished features caveats like PDF manipulating, frontend optimizations.
     Migrated project from Nuxt 2 to Nuxt 3.
 </p>`,
-    technologies: ['Nuxt 2-3', 'Vuex', 'VuexORM', 'Pinia', 'Vuetify 2-3', 'VeeValidate', 'JavaScript'],
+    technologies: ['Nuxt 2-3', 'Vuex', 'VuexORM', 'Pinia', 'Vuetify 2-3', 'VeeValidate', 'JavaScript', 'Pug', 'Jest'],
   },
   {
     title: 'Frontend Developer at Valtech',
@@ -69,8 +69,8 @@ for more than 20,000 active users. Delivered a bunch of features from simple CRU
   {
     title: 'Frontend Developer at Beyond',
     period: '2022 October - present',
-    description: `<p>Built customize UI pages for SaaS e-gaming platform, solving unusual tasks, handling data in Vuex, built generic components for future use-cases.</p>`,
-    technologies: ['Vue 2', 'Vuex', 'JavaScript'],
+    description: `<p>Built customize UI pages for SaaS e-gaming platform, crafting reusable UI components. Developed generic dashboards for displaying clients data. Established code style and linter in project. Refactored a lot of legacy code and integrated Vuex for state management.</p>`,
+    technologies: ['Vue 2', 'Vuex', 'JavaScript', 'SCSS', 'HTML5'],
   }
 ]
 
@@ -91,7 +91,6 @@ const animateCards = () => {
 }
 
 onMounted(() => {
-  console.log(xlDevice)
   if (xlDevice) {
     animateCards()
   }

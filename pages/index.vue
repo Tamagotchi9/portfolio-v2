@@ -4,12 +4,14 @@
     <Experience data-title="Experience"/>
     <Projects data-title="Pet Projects"/>
   </main>
+  <Footer/>
 </template>
 
 <script setup lang="ts">
 import Intro from '~/components/Intro.vue'
 import Experience from "~/components/Experience.vue"
 import Projects from '~/components/Projects.vue'
+import Footer from '~/components/Footer.vue'
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 const sectionTitle = ref<string>('Intro')

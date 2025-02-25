@@ -10,9 +10,8 @@
             Hello, I'm <br/>
             <span class="border-r-[6px] border-black animate-typing-effect">{{ typedTitle }}</span>
           </h1>
-          <p class="font-headline text-md xl:text-2xl">
-            Passionate engineer dedicated to what he is doing,
-            let achievements and experience tell about my skills
+          <p class="font-headline text-md xl:text-2xl max-w-[500px]">
+            Passionate engineer who keeps make your frontend better.
           </p>
         </div>
       </div>
